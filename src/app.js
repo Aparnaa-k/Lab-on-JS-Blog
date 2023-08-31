@@ -8,14 +8,17 @@ class Blog {
     addTitle() {
         var title_card = document.createElement('h1');
         title_card.setAttribute("id", "blog-title");
+        console.log(title_card)
         document.getElementById('card-text').appendChild(title_card);
-        title_card.innerHTML = this.title;
+        title_card.innerHTML += this.title;
     }
 
     addDescription() {
         var description_paragraph = document.createElement('p');
-        description_paragraph.textContent = this.detail;
+        description_paragraph.setAttribute("id", "blog-description");
+        console.log(description_paragraph)
         document.getElementById('card-text').appendChild(description_paragraph);
+        description_paragraph.innerHTML += this.detail;
     }
 }
   
@@ -25,14 +28,15 @@ class Blog {
 // 1. `helperAddPost()`
 // 2. `helperPost()`
 function helperAddPost() {
-    var popupFrame = document.getElementById('popup-frame');
-    popupFrame.style.display = 'block';
+    document.getElementById('popupContact').style.display = 'block';
 }
 
 
 function helperPost() {
-    var enteredTitle = document.getElementById('title-input').value;
-    var enteredDetail = document.getElementById('detail-input').value;
+    var enteredTitle = document.getElementById('title').value;
+    var enteredDetail = document.getElementById('detail').value;
+    newBlog = new Blog(enteredTitle, enteredDetail)
     newBlog.addTitle();
     newBlog.addDescription();
+    document.getElementById('popupContact').style.display = 'none';
 }
